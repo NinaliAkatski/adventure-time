@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	</title>
+	<style type="text/css">
+		.window{
+			height: 400px;
+			width:400px;
+			background: red;
+			position: absolute;
+			top:-53%;
+			transition: 1s;
+			left:40%;
+		}
+	</style>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div class="game">
+		<h1 class="text-center">POINTS</h1>
+		<h1 class="points text-center">0</h1>
+		
+
+		<div class="container">
+			<div class="row">
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake w-75" src="jake.png" alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png" alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="window"></div>
+
+
+	<script>
+		let jake=document.querySelectorAll(".jake");
+		let king=document.querySelectorAll(".king");
+		let point=0;
+		let dry=document.querySelector(".window");
+		
+		let func=function(arg){
+			jake[arg].style.display="none";
+		}
+
+		let end=function(){
+			if(point<=10){
+				dry.innerHTML="YOU LOSE";
+				dry.style.marginTop="30%";
+				clearInterval(timerID1);
+				clearInterval(timerID2);
+			}
+			else  {
+				dry.innerHTML="YOU WIN";
+				dry.style.marginTop="30%";
+				clearInterval(timerID1);
+				clearInterval(timerID2);
+				
+			}
+	
+		}
+
+		let interv1=function(){
+			let rand = Math.random()*8 //случайное число до 5
+			let round = Math.round(rand)
+			jake[round].style.display="block";
+			let func=function(){
+			jake[round].style.display="none";
+			}
+			setTimeout(func,800);
+		}
+		let timerID1=setInterval(interv1,1100);
+
+		let interv2=function(){
+			let rand = Math.random()*8 //случайное число до 5
+			let round = Math.round(rand)
+			king[round].style.display="block";
+			let func=function(){
+			king[round].style.display="none";
+			}
+			setTimeout(func,800);
+		}
+		let timerID2=setInterval(interv2,1100);
+
+		for(let i=0;i<8;i++){
+			king[i].onclick=function(){
+				point=point-6;
+				document.querySelector(".points").innerHTML=point;
+			}
+			jake[i].onclick=function(){
+				point=point+1;
+				document.querySelector(".points").innerHTML=point;
+			}
+		}
+
+		
+
+		setTimeout(end,10000);
+
+	</script>
+</body>
+</html>
